@@ -37,7 +37,7 @@
     state: latest
 
 - name: To old app schema
-  ansible.builtin.shell: mysql -h mysql-dev.devrohiops.online -uroot -p"{{ MYSQL_ROOT_PASSWORD }}" < /app/schema/backend.sql
+  ansible.builtin.shell: mysql -h mysql-{{env}}.devrohiops.online -uroot -p"{{ MYSQL_ROOT_PASSWORD }}" < /app/schema/backend.sql
 
 - name: To start nodejs services
   ansible.builtin.systemd_service:
