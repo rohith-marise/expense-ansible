@@ -8,21 +8,18 @@
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
 
-- name: To clear old/default html content directory
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: absent
+- name: Import common role App prerequisites
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app_prereq
+  vars:
+    app_dir: /usr/share/nginx/html
+    component: frontend
 
-- name: To create html directory to share the web content
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: directory
-
-- name: To download and extract the frontend app content
-  ansible.builtin.unarchive:
-    src: https://expense-artifacts.s3.amazonaws.com/frontend.zip
-    dest: /usr/share/nginx/html
-    remote_src: yes
+#- name: Run tasks/other.yaml instead of 'main'
+#ansible.builtin.import_role:
+#  name: myrole
+#  tasks_from: other
 
 - name: To start Nginx services
   ansible.builtin.systemd_service:
