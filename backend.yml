@@ -54,6 +54,6 @@
     - name: To start nodejs services
       ansible.builtin.systemd_service:
         state: restarted
-        name: nodejs
+        name: backend
         enabled: true
         daemon_reload: true
