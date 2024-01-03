@@ -1,5 +1,5 @@
 - name: To Setup frontend component of Expense Project
-  hosts: all
+  hosts: web
   become: yes
   tasks:
     - name: To install nginx web server package
