@@ -1,5 +1,5 @@
 - name: To Setup frontend component of Expense Project
   hosts: all
   become: yes
-  tasks:
+  roles:
     - frontend
