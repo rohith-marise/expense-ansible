@@ -40,6 +40,8 @@
 
     - name: Download NodeJS Dependencies
       ansible.builtin.shell: npm install
+      args:
+        chdir: /app
 
     - name: To install mysql client to old app schema
       ansible.builtin.dnf:
