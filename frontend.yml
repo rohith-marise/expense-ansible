@@ -1,0 +1,35 @@
+- name: To Setup frontend component of Expense Project
+  hosts: all
+  become: yes
+  tasks:
+    - name: To install nginx web server package
+      ansible.builtin.dnf:
+        name: nginx
+        state: latest
+
+    - name: To copy expense configuration file
+      ansible.builtin.copy:
+        src: expense.conf
+        dest: /etc/nginx/default.d/expense.conf
+
+    - name: To clear old/default html content directory
+      ansible.builtin.file:
+        path: /usr/share/nginx/html
+        state: absent
+
+    - name: To create html directory to share the web content
+      ansible.builtin.file:
+        path: /usr/share/nginx/html
+        state: directory
+
+    - name: To download and extract the frontend app content
+      ansible.builtin.unarchive:
+        src: /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zip
+        dest: /usr/share/nginx/html
+        remote_src: yes
+
+    - name: To start Nginx services
+      ansible.builtin.systemd_service:
+        state: started
+        name: nginx
+        enabled: true
