@@ -17,9 +17,9 @@
     component: frontend
 
 #- name: Run tasks/other.yaml instead of 'main'
-#ansible.builtin.import_role:
-#  name: myrole
-#  tasks_from: other
+   #ansible.builtin.import_role:
+    #name: myrole
+    #tasks_from: other
 
 - name: To start Nginx services
   ansible.builtin.systemd_service:
