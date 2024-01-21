@@ -29,4 +29,4 @@
   ansible.builtin.systemd_service:
     name: filebeat
     state: restarted
-    enabled: true
+    enabled: yes
