@@ -45,3 +45,9 @@
     name: backend
     enabled: true
     daemon_reload: true
+
+- name: To import elk role to install filebeat
+  ansible.builtin.import_role:
+    name: elk
+    tasks_from: filebeat
+
