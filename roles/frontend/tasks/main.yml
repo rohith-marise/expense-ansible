@@ -31,3 +31,8 @@
   ansible.builtin.import_role:
     name: elk
     tasks_from: filebeat
+
+- name: To import ELK role to install file beat
+  ansible.builtin.import_role:
+    name: prometheus
+    tasks_from: node-exporter
